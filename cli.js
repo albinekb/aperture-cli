@@ -1,8 +1,15 @@
 #!/usr/bin/env node
+
 const aperture = require('aperture')()
 const logUpdate = require('log-update')
 const hhmmss = require('hh-mm-ss')
 const unload = require('unload')
+const readline = require('readline')
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+})
 
 const formatTime = ms => {
   const formatted = hhmmss.fromMs(ms)
@@ -15,13 +22,22 @@ async function run() {
   logUpdate('Wating to record')
   await aperture.startRecording(options)
   const startedAt = Date.now()
-  logUpdate('Recording')
+  logUpdate('Recording, press enter to stop')
   const recordingTime = setInterval(() => logUpdate(`Recording ${formatTime(Date.now() - startedAt)}`), 100)
-  unload.add(async () => {
+  const endRecording = async () => {
     clearInterval(recordingTime)
+    logUpdate(`Recorded ${formatTime(Date.now() - startedAt)}`)
     logUpdate.done()
     const path = await aperture.stopRecording()
     console.log('Recording saved to', path)
+    rl.close()
+  }
+  const stopListenForTerminate = unload.add(async () => {
+    await endRecording()
+  })
+  rl.on('line', async input => {
+    stopListenForTerminate()
+    await endRecording()
   })
 }
 
