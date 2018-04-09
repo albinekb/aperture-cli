@@ -1,6 +1,6 @@
 {
   "name": "@albinekb/aperture-cli",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "author": "Albin Ekblom <albinekblom@gmail.com>",
   "license": "MIT",
