@@ -1,5 +1,5 @@
 {
-  "name": "aperture-cli",
+  "name": "@albinekb/aperture-cli",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Albin Ekblom <albinekblom@gmail.com>",
