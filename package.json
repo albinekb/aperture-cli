@@ -1,0 +1,17 @@
+{
+  "name": "aperture-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Albin Ekblom <albinekblom@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "aperture": "^4.0.0",
+    "chalk": "^2.3.2",
+    "hh-mm-ss": "^1.2.0",
+    "log-update": "^2.3.0",
+    "unload": "^1.3.6"
+  },
+  "bin": {
+    "aperture": "cli.js"
+  }
+}
